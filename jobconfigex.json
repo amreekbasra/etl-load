@@ -1,0 +1,49 @@
+{
+  "jobId": "oracle-to-csv-sales-20250428-01",
+  "priority": 5,
+  "source": {
+    "type": "ORACLE_DB",
+    "connectionDetails": {
+      "jdbcUrl": "jdbc:oracle:thin:@//your_oracle_host:1521/your_service_name",
+      "username": "etl_user",
+      "password": "${ETL_SOURCE_DB_PASSWORD}", // Use env var or secrets management
+      "query": "SELECT order_id, customer_name, product_id, sale_date, quantity, unit_price FROM sales_data WHERE status = 'PROCESSED' AND sale_date >= TO_DATE('2025-01-01', 'YYYY-MM-DD')",
+      "fetchSize": 2000
+    }
+  },
+  "destination": {
+    "type": "FLAT_FILE",
+    "connectionDetails": {
+      "filePath": "/data/output/processed_sales.csv",
+      "delimiter": ",",
+      "includeHeader": true,
+      "encoding": "UTF-8"
+    },
+    "batchSize": 10000
+  },
+  "mappings": [
+    {"sourceFieldName": "ORDER_ID", "destinationFieldName": "OrderID", "sourceFieldType": "NUMBER", "destFieldType": "LONG", "isSourceNullable": false, "isDestNullable": false},
+    {"sourceFieldName": "CUSTOMER_NAME", "destinationFieldName": "Customer", "sourceFieldType": "VARCHAR2", "destFieldType": "STRING", "isSourceNullable": true, "isDestNullable": true},
+    {"sourceFieldName": "PRODUCT_ID", "destinationFieldName": "ProductCode", "sourceFieldType": "NUMBER", "destFieldType": "INTEGER", "isSourceNullable": false, "isDestNullable": false},
+    {"sourceFieldName": "SALE_DATE", "destinationFieldName": "TransactionDate", "sourceFieldType": "DATE", "destFieldType": "TIMESTAMP", "isSourceNullable": false, "isDestNullable": false},
+    {"sourceFieldName": "QUANTITY", "destinationFieldName": "Units", "sourceFieldType": "NUMBER", "destFieldType": "INTEGER", "isSourceNullable": false, "isDestNullable": false},
+    {"sourceFieldName": "UNIT_PRICE", "destinationFieldName": "Price", "sourceFieldType": "NUMBER", "destFieldType": "BIGDECIMAL", "isSourceNullable": true, "isDestNullable": true}
+  ],
+  "errorHandling": {
+     "strategy": "ROUTE_TO_FILE",
+     "errorFilePath": "/data/errors/sales_job_errors.csv",
+     "maxErrorsAllowed": 1000
+  },
+  "transformation": {
+      "type": "NONE"
+      // Example for Stage 2 (Python):
+      // "type": "PYTHON_SCRIPT",
+      // "scriptPath": "/opt/etl/scripts/transform_sales_data.py",
+      // "parameters": {
+      //    "region": "APAC"
+      // }
+  },
+  "monitoring": {
+      "progressUpdateFrequency": 50000 // Log progress every N records
+  }
+}
