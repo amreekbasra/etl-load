@@ -1,0 +1,151 @@
+<properties>
+    <java.version>17</java.version> <spring-boot.version>...</spring-boot.version> <logstash-logback-encoder.version>...</logstash-logback-encoder.version>
+    <lombok.version>...</lombok.version>
+</properties>
+
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId> </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-logging</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+     <dependency> <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-log4j2</artifactId>
+         <exclusions>
+             <exclusion>
+                 <groupId>org.apache.logging.log4j</groupId>
+                 <artifactId>*</artifactId>
+             </exclusion>
+         </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+    </dependency>
+     <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>net.logstash.logback</groupId>
+        <artifactId>logstash-logback-encoder</artifactId>
+        <version>${logstash-logback-encoder.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.yourcompany.etl</groupId>
+        <artifactId>etl-core</artifactId>
+        <version>1.0-SNAPSHOT</version> </dependency>
+
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <optional>true</optional> </dependency>
+    <dependency> <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+    </dependency>
+     <dependency> <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+<properties>
+    <java.version>17</java.version>
+    <hikari.version>...</hikari.version>
+    <lombok.version>...</lombok.version>
+    <slf4j.version>...</slf4j.version>
+    <oracle.driver.version>...</oracle.driver.version>
+    <mssql.driver.version>...</mssql.driver.version>
+    <mongo.driver.version>...</mongo.driver.version>
+    <elasticsearch.client.version>...</elasticsearch.client.version> </properties>
+
+<dependencies>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+    </dependency>
+
+    <dependency> <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId> </dependency>
+    <dependency>
+       <groupId>com.zaxxer</groupId>
+       <artifactId>HikariCP</artifactId>
+       <version>${hikari.version}</version>
+    </dependency>
+
+    <dependency>
+		<groupId>com.oracle.database.jdbc</groupId>
+		<artifactId>ojdbc11</artifactId> <version>${oracle.driver.version}</version>
+		<scope>runtime</scope> </dependency>
+    <dependency>
+        <groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>mssql-jdbc</artifactId>
+        <version>${mssql.driver.version}</version>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-sync</artifactId>
+        <version>${mongo.driver.version}</version>
+        <scope>runtime</scope> <optional>true</optional> </dependency>
+    <dependency>
+        <groupId>org.elasticsearch.client</groupId>
+        <artifactId>elasticsearch-rest-high-level-client</artifactId>
+        <version>${elasticsearch.client.version}</version>
+        <scope>runtime</scope> <optional>true</optional> </dependency>
+
+
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId> <optional>true</optional> </dependency>
+
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <optional>true</optional>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <optional>true</optional>
+    </dependency>
+     <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <optional>true</optional>
+    </dependency>
+
+</dependencies>
