@@ -1,0 +1,14 @@
+{
+  "jobId": "oracle-to-mssql-inventory",
+  "source": {
+    "type": "ORACLE_DB", // Use Oracle reader
+    "connectionDetails": { ... }
+  },
+  "destination": {
+    "type": "MSSQL_DB", // Use MSSQL writer
+    "connectionDetails": { ... },
+    "batchSize": 2000
+  },
+  "mappings": [ ... ],
+  // ... other config ...
+}
