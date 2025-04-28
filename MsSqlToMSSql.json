@@ -1,0 +1,14 @@
+{
+  "jobId": "mssql-to-mssql-log-archive",
+  "source": {
+    "type": "MSSQL_DB", // Use MSSQL reader
+    "connectionDetails": { "jdbcUrl": "...", "username": "src_user", ... }
+  },
+  "destination": {
+    "type": "MSSQL_DB", // Use MSSQL writer
+    "connectionDetails": { "jdbcUrl": "...", "username": "dest_user", ... },
+    "batchSize": 5000
+  },
+  "mappings": [ ... ],
+  // ... other config ...
+}
