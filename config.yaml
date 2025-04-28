@@ -1,0 +1,16 @@
+# application.yml (or application-profile.yml)
+spring:
+  application:
+    name: etl-workflow-engine
+  # --- Configuration Database Connection ---
+  datasource:
+    configdb: # Use a distinct name for this datasource
+      jdbc-url: jdbc:oracle:thin:@//config-db-host:1521/config_service
+      username: etl_engine_user
+      password: ${ETL_CONFIG_DB_PASSWORD} # Use env var/secrets
+      driver-class-name: oracle.jdbc.OracleDriver
+      hikari:
+        pool-name: ConfigDBPool
+        maximum-pool-size: 5 # Small pool usually sufficient for config lookup
+        minimum-idle: 1
+# ... other engine configs (Kafka, etc.) ...
