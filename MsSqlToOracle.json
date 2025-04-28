@@ -1,0 +1,25 @@
+{
+  "jobId": "mssql-to-oracle-sales-transfer",
+  "source": {
+    "type": "MSSQL_DB", // Use the MSSQL reader
+    "connectionDetails": {
+      "jdbcUrl": "jdbc:sqlserver://<mssql_host>:<port>;databaseName=<db>;...",
+      "username": "mssql_user",
+      "passwordEnvVar": "MSSQL_SRC_PWD", // Env var name
+      "query": "SELECT ... FROM SourceTable WHERE ...",
+      "fetchSize": 1000
+    }
+  },
+  "destination": {
+    "type": "ORACLE_DB", // Use the Oracle writer
+    "connectionDetails": {
+      "jdbcUrl": "jdbc:oracle:thin:@//<oracle_host>:<port>/<service>",
+      "username": "oracle_user",
+      "passwordEnvVar": "ORACLE_DEST_PWD",
+      "tableName": "DESTINATION_TABLE"
+    },
+    "batchSize": 2500
+  },
+  "mappings": [ ... ],
+  // ... other config ...
+}
